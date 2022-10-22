@@ -135,54 +135,70 @@ for j in range(len(activ)) :
     M.iloc[:,j] = a
     a = []
 
-
-classifier = MLPClassifier(hidden_layer_sizes=(),
-                                      activation='relu',
-                                      solver='lbfgs')
-classifier.fit(X_train,Y_train)
-Y_pred = classifier.predict(X_test)
-accuracy_score(Y_test, Y_pred)
-classifier.score(X_test,Y_test)
-
 M.columns = activ
 M.index = index
 
-M.idxmax()
-
-
+# classifier = MLPClassifier(hidden_layer_sizes=(),
+#                                       activation='relu',
+#                                       solver='lbfgs')
+# classifier.fit(X_train,Y_train)
+# Y_pred = classifier.predict(X_test)
+# accuracy_score(Y_test, Y_pred)
+# classifier.score(X_test,Y_test)
 
 
 #Question 6 
 
+M.idxmax()
+#Notre meilleur résultat est le modèle avec comme fonction d'activation 
+#logistique sans couche cachée et solveur adam, suivi par le modèle d'activation
+#tanh, sans couche cachée et solveur lbfgs
+
+classifier_best = MLPClassifier(hidden_layer_sizes=(),
+                                      activation='logistic',
+                                      solver='adam')
+classifier_best.fit(X_train,Y_train)
+Y_pred_best = classifier_best.predict(X_test)
+accuracy_score(Y_test, Y_pred_best)
+classifier_best.score(X_test,Y_test)
+
+
+
 #svm
-# classifier_svm_poly = SVC(kernel = "poly")
-# classifier_svm_lin = SVC(kernel ="linear")
 
-# scores_lin = cross_val_score(classifier_svm_lin, X_test, Y_test, cv = RepeatedKFold(
-#     n_splits=5, n_repeats=1000))
-# scores_poly = cross_val_score(classifier_svm_poly, X_test, Y_test, cv = RepeatedKFold(
-#     n_splits=5, n_repeats=1000))
+classifier_svm_poly = SVC(kernel = "poly")
+classifier_svm_lin = SVC(kernel ="linear")
 
-# print("Cross-validation: {}",scores_lin.mean())
-# print("Cross-validation: {}",scores_poly.mean())
+scores_lin = cross_val_score(classifier_svm_lin, X_test, Y_test, cv = RepeatedKFold(
+    n_splits=5, n_repeats=1000))
+scores_poly = cross_val_score(classifier_svm_poly, X_test, Y_test, cv = RepeatedKFold(
+    n_splits=5, n_repeats=1000))
+
+print('Score svm linear: %s' % scores_lin.mean())
+print('Score svm linear: %s' % scores_poly.mean())
+print('Score neuronal: %s' % accuracy_score(Y_test, Y_pred_best))
 
 
+
+#En utilisant GridSearchCV
+model_svm = SVC()
 
 parameters = {'kernel': ['linear']}
-model_svm = SVC()
 svm_grid = GridSearchCV(model_svm, parameters, n_jobs=-1, cv = RepeatedKFold(
-    n_splits=5, n_repeats=100))
+    n_splits=5, n_repeats=400))
 svm_grid.fit(X_train, Y_train)
-print(svm_grid.best_params_)
-print('Score : %s' % svm_grid.score(X_test, Y_test))
-
 
 parameters2 = {'kernel': ['poly']}
 svm_grid2 = GridSearchCV(model_svm, parameters2, n_jobs=-1, cv = RepeatedKFold(
-    n_splits=5, n_repeats=100))
+    n_splits=5, n_repeats=400))
 svm_grid2.fit(X_train, Y_train)
 
-print('Score : %s' % svm_grid2.score(X_test, Y_test))
+
+print('Score svm linear: %s' % svm_grid.score(X_test, Y_test))
+print('Score svm poly: %s' % svm_grid2.score(X_test, Y_test))
+print('Score neuronal: %s' % accuracy_score(Y_test, Y_pred_best))
+
+
 
 
 
