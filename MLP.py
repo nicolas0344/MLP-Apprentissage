@@ -68,15 +68,14 @@ ax.legend(loc = 'center right')
 plt.title('OR (OU inclusif)')
 plt.show()
 
- 
+
+classifier = MLPClassifier(hidden_layer_sizes=(),activation='identity',
+                           solver='lbfgs')
 #Question 2 
 
 xtrainAND = [[0., 0.], [0., 1.], [1., 0.],[1., 1.]]
 ytrainAND = [0, 0, 0, 1]
-plt.plot(xtrainAND, ytrainAND)
 
-classifier = MLPClassifier(hidden_layer_sizes=(),activation='identity',
-                           solver='lbfgs')
 classifier.fit(xtrainAND, ytrainAND)
 
 X_test_AND= [[1., 1.],[0.,0.],[1.,1.],[0.,1.]]
@@ -91,20 +90,49 @@ classifier.score(X_test_AND,Y_test_AND)
 #Question 3
 xtrainOR = [[0., 0.], [0., 1.], [1., 0.],[1., 1.]]
 ytrainOR = [0, 1, 1, 1]
-plt.plot(xtrainOR, ytrainOR)
 
-classifier = MLPClassifier(hidden_layer_sizes=(),activation='identity',
-                           solver='lbfgs')
 classifier.fit(xtrainOR, ytrainOR)
 
-X_test_OR = [[1., 1.],[0.,0.]]
-classifier.predict(X_test_OR)
+X_test_OR = [[1., 1.],[0.,0.],[0.,1.]]
+Y_test_OR = [1.,0.,1.]
+Y_predict_OR = classifier.predict(X_test_OR)
 
 #Verification des résultats du classifieur
-np.array(ytrainOR) - classifier.predict(xtrainOR)
+classifier.score(X_test_OR,Y_test_OR)
 
 
 #Question 4
+#a)
 
+xtrainXOR = [[0., 0.], [0., 1.], [1., 0.],[1., 1.]]
+ytrainXOR = [0, 1, 1, 0.]
+
+classifier.fit(xtrainXOR, ytrainXOR)
+
+X_test_XOR = [[1., 1.],[0.,0.],[0.,1.],[1.,0.]]
+Y_test_XOR = [0.,0.,1.,1.]
+Y_predict_XOR = classifier.predict(X_test_XOR)
+
+classifier.score(X_test_XOR,Y_test_XOR)
+
+#b)
+classifier_XOR_id = MLPClassifier(hidden_layer_sizes=(4,2),activation='identity',
+                           solver='lbfgs')
+
+classifier_XOR_id.fit(xtrainXOR, ytrainXOR)
+Y_predict_XOR_id = classifier_XOR_id.predict(X_test_XOR)
+
+classifier_XOR_id.score(X_test_XOR,Y_test_XOR)
+classifier_XOR_id.coefs_
+
+#c)
+classifier_XOR_tanh = MLPClassifier(hidden_layer_sizes=(4,2),activation='tanh',
+                           solver='lbfgs')
+
+classifier_XOR_tanh.fit(xtrainXOR, ytrainXOR)
+Y_predict_XOR_tanh = classifier_XOR_tanh.predict(X_test_XOR)
+
+classifier_XOR_tanh.score(X_test_XOR,Y_test_XOR)
+classifier_XOR_tanh.coefs_
 
 
