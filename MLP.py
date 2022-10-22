@@ -10,7 +10,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPClassifier
 from sklearn.datasets import load_digits
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.svm import SVC
 
 
 #Question 1
@@ -152,23 +153,46 @@ solve = ['lbfgs', 'sgd', 'adam']
 layers = [(),(4,2),(3,3,2)]
 index = []
 
-for j in range(len(activ)) :
-       for i in range(len(solve)) :
-           index.append((solve[j],layers[i]))
+for j in range(len(solve)) :
+    for i in range(len(layers)) :
+        index.append((solve[j],layers[i]))
 
 a = np.zeros((3,4))
 M = [a,a,a]
-for k in range(len(layers)) : 
-   for j in range(len(activ)) :
-       for i in range(len(solve)) : 
+
+for j in range(len(activ)) :
+    for i in range(len(solve)) : 
+        for k in range(len(layers)) :
            classifier = MLPClassifier(hidden_layer_sizes=layers[k],
                                       activation=activ[j],
                                       solver=solve[i])
            classifier.fit(X_train,Y_train)
            Y_pred = classifier.predict(X_test)
-           M[k][i,j] = accuracy_score(Y_test, Y_pred)
+           M[k][i,j] = classifier.score(X_test,Y_test)
+
+
+classifier = MLPClassifier(hidden_layer_sizes=(),
+                                      activation='identity',
+                                      solver='sgd')
+classifier.fit(X_train,Y_train)
+Y_pred = classifier.predict(X_test)
+accuracy_score(Y_test, Y_pred)
+
 
 M_results = pd.concat([pd.DataFrame(M[0]), pd.DataFrame(M[1]), 
                        pd.DataFrame(M[2])])
 M_results.columns = activ
 M_results.index = index
+
+
+
+#Question 6 
+
+M_results.idxmax()
+
+#svm
+parameters = {'kernel': ['linear'], 'C': list(np.linspace(0.001, 3, 21))}
+clf2 = SVC()
+clf_grid = GridSearchCV(clf2, parameters, n_jobs=-1)
+clf_grid.fit(X_train, Y_train)
+print('Score : %s' % clf_grid.score(X_test, Y_test))
