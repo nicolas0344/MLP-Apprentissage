@@ -1,0 +1,13 @@
+\babel@toc {french}{}\relax 
+\contentsline {part}{Introduction}{2}{chapter*.2}%
+\contentsline {part}{Question 1}{2}{section*.3}%
+\contentsline {part}{Question 2}{2}{section*.5}%
+\contentsline {part}{Question 3}{2}{section*.7}%
+\contentsline {part}{Question 3}{3}{section*.9}%
+\contentsline {subsection}{\numberline {0.0.1}a)}{3}{subsection.0.0.1}%
+\contentsline {part}{Question 4}{3}{figure.caption.10}%
+\contentsline {subsection}{\numberline {0.0.2}b)}{3}{subsection.0.0.2}%
+\contentsline {subsection}{\numberline {0.0.3}c)}{3}{subsection.0.0.3}%
+\contentsline {part}{Question 5}{3}{section*.13}%
+\contentsline {part}{Question 6}{3}{section*.14}%
+\contentsline {part}{Bibliographie}{4}{chapter*.15}%
