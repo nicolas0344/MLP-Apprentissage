@@ -6,9 +6,12 @@ Created on Fri Oct 21 22:01:00 2022
 """
 
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPClassifier
- 
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+
 
 #Question 1
 
@@ -136,3 +139,36 @@ classifier_XOR_tanh.score(X_test_XOR,Y_test_XOR)
 classifier_XOR_tanh.coefs_
 
 
+#Question 5 
+
+dataset = load_digits()
+X = dataset.data 
+Y = dataset.target
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.1)
+
+
+activ = ['identity', 'logistic', 'tanh', 'relu']
+solve = ['lbfgs', 'sgd', 'adam']
+layers = [(),(4,2),(3,3,2)]
+index = []
+
+for j in range(len(activ)) :
+       for i in range(len(solve)) :
+           index.append((solve[j],layers[i]))
+
+a = np.zeros((3,4))
+M = [a,a,a]
+for k in range(len(layers)) : 
+   for j in range(len(activ)) :
+       for i in range(len(solve)) : 
+           classifier = MLPClassifier(hidden_layer_sizes=layers[k],
+                                      activation=activ[j],
+                                      solver=solve[i])
+           classifier.fit(X_train,Y_train)
+           Y_pred = classifier.predict(X_test)
+           M[k][i,j] = accuracy_score(Y_test, Y_pred)
+
+M_results = pd.concat([pd.DataFrame(M[0]), pd.DataFrame(M[1]), 
+                       pd.DataFrame(M[2])])
+M_results.columns = activ
+M_results.index = index
