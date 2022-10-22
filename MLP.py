@@ -192,7 +192,7 @@ M_results.idxmax()
 
 #svm
 parameters = {'kernel': ['linear'], 'C': list(np.linspace(0.001, 3, 21))}
-clf2 = SVC()
-clf_grid = GridSearchCV(clf2, parameters, n_jobs=-1)
-clf_grid.fit(X_train, Y_train)
-print('Score : %s' % clf_grid.score(X_test, Y_test))
+model_svm = SVC()
+svm_grid = GridSearchCV(model_svm, parameters, n_jobs=-1, cv = 5)
+svm_grid.fit(X_train, Y_train)
+print('Score : %s' % svm_grid.score(X_test, Y_test))
