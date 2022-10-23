@@ -170,7 +170,7 @@
 		\includegraphics[scale=1.1]{images/OR.png}%
 	}%
 \end{figure}
-Les difficultés de classification résident dans le fait que les données du \textit{XOR} ne sont pas linéairement séparables. Sur le graphique (b) on voit qu'il y a deux droites de séparations et non une seule. De ce fait, un seul neurone ne peut réussir à classifier les données.
+Les difficultés de classification résident dans le fait que les données du \textit{XOR} ne sont pas linéairement séparables. Sur le graphique (b) on voit qu'il y a deux droites de séparation et non une seule. De ce fait, un seul neurone ne peut réussir à classifier les données.
 
 \section*{Question 2}
 
@@ -183,7 +183,7 @@ Les difficultés de classification résident dans le fait que les données du \t
 	\includegraphics[scale=0.7]{images/Q2.png}
 	\caption{Score obtenu par le classifieur $MLP$ sur les données de test de l'opérateur $AND$}
 \end{figure}
-Dans le cas où l'on souhaite apprendre l'opérateur $AND$, le classifieur $MLP$ ne comprenant aucune couche cachée fourni de très bons résultats en terme de prédiction. Comme on peut le voir sur la figure 1, le classifieur ne fait aucune erreur de prédiction (le score vaut $1$). Pour calculer ce score nous avons utiliser la fonction $score(x\_test, y\_test)$ de $sklearn$.
+Dans le cas où l'on souhaite apprendre l'opérateur $AND$, le classifieur $MLP$ ne comprenant aucune couche cachée fournit de très bons résultats en terme de prédiction. Comme on peut le voir sur la figure 1, le classifieur ne fait aucune erreur de prédiction (le score vaut $1$). Pour calculer ce score nous avons utiliser la fonction $score(x\_test, y\_test)$ de $sklearn$.
 \section*{Question 3}
 
 \addcontentsline{toc}{part}{Question 3}
@@ -195,20 +195,20 @@ Dans le cas où l'on souhaite apprendre l'opérateur $AND$, le classifieur $MLP$
 	\includegraphics[scale=0.7]{images/Q3.png}
 	\caption{Score obtenu par le classifieur $MLP$ sur les données de test de l'opérateur $OR$}
 \end{figure}
-Dans le cas où l'on souhaite apprendre l'opérateur $OR$, le classifieur $MLP$ ne comprenant aucune couche cachée fourni de très bons résultats en terme de prédiction. Comme on peut le voir sur la figure 2, le classifieur ne fait aucune erreur de prédiction (le score vaut $1$). Pour calculer ce score nous avons utiliser la fonction $score(x\_test, y\_test)$ de $sklearn$.
+Dans le cas où l'on souhaite apprendre l'opérateur $OR$, le classifieur $MLP$ ne comprenant aucune couche cachée fournit de très bons résultats en terme de prédiction. Comme on peut le voir sur la figure 2, le classifieur ne fait aucune erreur de prédiction (le score vaut $1$). Pour calculer ce score nous avons utiliser la fonction $score(x\_test, y\_test)$ de $sklearn$.
 
 \section*{Question 4}
 \addcontentsline{toc}{part}{Question 3}
 \subsection{a)}
 
-\underline{Définissons un classifieur \textit{MLP} sans couches cachées pour apprendre l’opérateur \textit{XOR}:}
+\underline{Définissons un classifieur \textit{MLP} sans couche cachée pour apprendre l’opérateur \textit{XOR}:}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/Q4a.png}
 	\caption{Score obtenu par le classifieur $MLP$ sur les données de test de l'opérateur $XOR$ sans utiliser de couches cachées}
 \end{figure}
-Dans le cas où l'on souhaite apprendre l'opérateur $XOR$, le classifieur $MLP$ ne comprenant aucune couche cachée fourni de mauvais résultats en terme de prédiction. Comme on peut le voir sur la figure 3, la précision de prédiction du classifieur est de $50\%$ (le score vaut $0.5$), ce qui est assez bas.\\
+Dans le cas où l'on souhaite apprendre l'opérateur $XOR$, le classifieur $MLP$ ne comprenant aucune couche cachée fournit de mauvais résultats en terme de prédiction. Comme on peut le voir sur la figure 3, la précision de prédiction du classifieur est de $50\%$ (le score vaut $0.5$), ce qui est assez bas.\\
 Cela s'explique par le fait qu'un perceptron ne peut apprendre que sur des données linéairement séparables or ce n'est ici pas le cas.
 \addcontentsline{toc}{part}{Question 4}
 
@@ -222,7 +222,7 @@ Cela s'explique par le fait qu'un perceptron ne peut apprendre que sur des donn�
 	\includegraphics[scale=0.7]{images/Q4b.png}
 	\caption{Score obtenu par le classifieur $MLP$ sur les données de test de l'opérateur $XOR$ en utilisant $2$ couches cachées}
 \end{figure}
-Le classifieur $MLP$ comprenant deux couches cachées ($4$ neurones sur la première couche et $2$ neurones sur la deuxième) fourni de meilleurs résultats (en terme de prédiction) que le classifieur ne comprenant aucune couche cachée. En effet, comme on peut le voir sur la figure 4, la précision de prédiction de ce nouveau classifieur est de $75\%$ contre $50\%$ pour le précédent.\\
+Le classifieur $MLP$ comprenant deux couches cachées ($4$ neurones sur la première couche et $2$ neurones sur la deuxième) fournit de meilleurs résultats (en terme de prédiction) que le classifieur ne comprenant aucune couche cachée. En effet, comme on peut le voir sur la figure 4, la précision de prédiction de ce nouveau classifieur est de $75\%$ contre $50\%$ pour le précédent.\\
 Cela s'explique par le fait que l'ajout de couches cachées dans un perceptron permet de transformer un problème non linéairement séparable en un problème linéairement séparable. Ce nouveau classifieur (perceptron multi-couche) sera donc en mesure d'apprendre l'opérateur XOR contrairement au précèdent.
 
 \subsection{c)}
@@ -234,41 +234,43 @@ Cela s'explique par le fait que l'ajout de couches cachées dans un perceptron p
 	\includegraphics[scale=0.7]{images/Q4c.png}
 	\caption{Score obtenu par le classifieur $MLP$ sur les données de test de l'opérateur $XOR$ en utilisant $2$ couches cachées et des fonctions d'activation $tanh$}
 \end{figure}
-Les résultats obtenus ici sont encore mieux que ceux obtenus dans les deux cas précédent. En effet, comme on peut le voir sur la figure 5, la précision de prédiction de ce nouveau classifieur est de $100\%$ contre $75\%$ et $50\%$ pour les deux précédent.
-Les fonctions d'activation hyperboliques ($tanh$) cherchent des séparateurs non linéaires or nos données sont ici non linéairement séparables. Par conséquent, ces fonctions d'activation seront bien adaptées à notre situation. Cela explique pourquoi les résultats obtenus ici sont mieux que ceux obtenus précédemment.
+Les résultats obtenus ici sont encore mieux que ceux obtenus dans les deux cas précédents. En effet, comme on peut le voir sur la figure 5, la précision de prédiction de ce nouveau classifieur est de $100\%$ contre $75\%$ et $50\%$ pour les deux précédents.
+Les fonctions d'activation hyperbolique ($tanh$) cherchent des séparateurs non linéaires or nos données sont ici non linéairement séparables. Par conséquent, ces fonctions d'activation seront bien adaptées à notre situation. Cela explique pourquoi les résultats obtenus ici sont mieux que ceux obtenus précédemment.
 
 \section*{Question 5}
 
 \addcontentsline{toc}{part}{Question 5}
 
-blabla
+Notre jeu de donnée est composé d'images (de taille 8$\times$8 c'est à dire $64$ pixels) de chiffre manuscrit. On veut identifier le chiffre contenu dans une image. On cherche donc ici à mettre en place un réseau de neurones qui sera capable de classifier ces images. Étant donné qu'il y a $10$ chiffres allant de $0$ à $9$, nous aurons ici un nombre total de $10$ classes.\\\\
+
+Nous allons comparer les performances de plusieurs classifieur que nous aurons crée en jouant sur différents paramètres de $MLPclassifieur$. Nous regrouperons ces performances dans un tableau puis nous regarderons quel classifieur fournit les meilleurs performances.
+
+\begin{figure}[htp] 
+	\centering
+	\subfloat[Dataframe des scores des différents classifieurs utilisés]{%
+		\includegraphics[scale=0.65]{images/df_MLP.png}%
+	}%
+	\hfill%
+	\subfloat[Meilleurs $MLP$ en fonctions des différentes fonctions d'activations]{%
+		\includegraphics[scale=1.4]{images/best_MLP.png}%
+	}%
+	\caption{}
+\end{figure}
+
+D'après la figure $6$, on constate que les classifieurs sans couches cachées sont les plus performant. Ce résultat est étonnant puisqu'ici, les données sont linéairement non séparables. Les classifieurs $MLP$ ayant les meilleurs performances sont ceux ayant pour fonctions d'activation la fonction tangente hyperbolique ($tanh$) et la fonction linéaire ($identity$). Étant donné que les données sont linéairement non séparables, on se serait plutôt attendu à avoir de meilleurs résultats avec la fonction d'activation $tanh$ et l'optimiseur $adam$.
 
 \section*{Question 6}
 
 \addcontentsline{toc}{part}{Question 6}
 
-blabla
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/SVM_vs_MLP.png}
+	\caption{Comparaison entre le classifieur $SVM$ et $MLP$}
+\end{figure}
 
-\chapter*{Bibliographie}
+Dans cette dernière question nous comparons le classifieur $MLP$ obtenu dans la question précédente avec deux classifieurs $SVM$. Afin de déterminer le meilleur de ces trois classifieur, nous évaluons les performances des deux classifieur $SVM$ en validation croisé avec un k-fold (k = 5).\\
+D'après la figure $7$, on constate que le classifieur $SVM$ avec le noyau polynomial est le meilleur car c'est celui ayant le score le plus élevé.
 
-\addcontentsline{toc}{part}{Bibliographie}
-
-[1] WikiStat. An introduction to network inference and mining,\textit{Article}\newline
-\url{http://www.nathalievialaneix.eu/doc/pdf/wikistat-network_compiled.pdf}\newline
-\break
-[2] PNAS. Modularity and community structure in networks (2015),\textit{Article}\newline
-\url{https://www.pnas.org/doi/10.1073/pnas.0601602103#abstract} \newline
-\break
-[3] Wikipédia (2022). Méthode de Louvain, \textit{Article}\newline
-\url{https://fr.wikipedia.org/wiki/Méthode_de_Louvain} \newline
-\break
-[4] igraph, \textit{Documentation}\newline
-\url{https://igraph.org/python/versions/latest/}\newline
-\break
-[5] igraph, \textit{Documentation}\newline
-\url{https://igraph.org/python/versions/latest/tutorials/visualize_communities/visualize_communities.html}
-\break
-[6] igraph, \textit{Tutoriel}\newline
-\url{https://igraph.org/python/api/latest/igraph._igraph.GraphBase.html#Erdos_Renyi}
 
 \end{document}

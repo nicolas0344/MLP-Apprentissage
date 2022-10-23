@@ -9,5 +9,4 @@
 \contentsline {subsection}{\numberline {0.0.2}b)}{3}{subsection.0.0.2}%
 \contentsline {subsection}{\numberline {0.0.3}c)}{3}{subsection.0.0.3}%
 \contentsline {part}{Question 5}{3}{section*.13}%
-\contentsline {part}{Question 6}{3}{section*.14}%
-\contentsline {part}{Bibliographie}{4}{chapter*.15}%
+\contentsline {part}{Question 6}{4}{section*.15}%
